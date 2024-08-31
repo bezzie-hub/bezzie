@@ -3,7 +3,7 @@
 
 import frappe
 
-from bezzie.mob.auth import get_user_profile, user_forgot_password, user_login, user_reset_password, user_send_otp, user_sign_up, user_validate_otp
+from bezzie.mob.auth import delete_user_profile, get_user_profile, user_forgot_password, user_login, user_reset_password, user_send_otp, user_sign_up, user_validate_otp
 
 
 # login up using email id and password
@@ -20,6 +20,13 @@ def sign_up(email, full_name,mobile_number,password):
 @frappe.whitelist()
 def get_profile():
 	get_user_profile()
+
+
+#DELETE user profile
+@frappe.whitelist()
+def delete_profile(username):
+	delete_user_profile(username)
+
 
 @frappe.whitelist(allow_guest=True)
 def forgot_password(username,token,password,re_password):

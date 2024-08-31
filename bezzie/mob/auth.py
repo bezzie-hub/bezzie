@@ -72,13 +72,13 @@ def user_sign_up(email, full_name,mobile_number,password):
 	if is_signup_disabled():
 		auth.update({"diabled":"Sign Up is disabled"})
 	if frappe.db.exists("User",  {"mobile_no": mobile_number}):
-		auth.update({"mobile_no":"Mobile Number Already Used"})
+		auth.update({"mobile_number":"Mobile Number Already Used"})
 	if frappe.db.exists("User",  {"email": email}):
 		auth.update({"user_reg":"User Email Already Registered"})	
 	if frappe.db.get_creation_count("User", 60) > 300:
 		auth.update({"creation_count":"Too many users signed up recently, so the registration is disabled. Please try back in an hour"})
 	if auth:
-		frappe.local.response["status_code"] =401
+		frappe.local.response["status_code"] =403
 		frappe.local.response["message"] ="Invalid user credentils"
 		frappe.local.response["data"] =auth
 		return

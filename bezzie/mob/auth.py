@@ -118,6 +118,18 @@ def get_user_profile():
 		frappe.local.response["message"] ="Something went wrong"
 
 
+def delete_user_profile(username):
+	
+	try:
+		frappe.delete_doc("User", username,ignore_permissions=True)
+		# frappe.db.delete("User", {"name": username})
+		frappe.local.response["status_code"] =200
+		frappe.local.response["message"] ="User Deleted Successfully"
+		frappe.local.response["data"]={}
+	except:
+		frappe.local.response["status_code"] =500
+		frappe.local.response["message"] ="Something went wrong"
+
 def user_forgot_password(username,token,password,re_password):
 	
 	try:

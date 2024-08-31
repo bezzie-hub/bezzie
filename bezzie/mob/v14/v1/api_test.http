@@ -1,8 +1,8 @@
 
-# @host = http://127.0.0.1:8011
+@host = http://127.0.0.1:8011
 
 #staging
-@host = http://155.248.249.60
+# @host = http://155.248.249.60
 @version = v14
 @path = /api/method/bezzie.mob.{{version}}.v1
 @contentType = application/json
@@ -18,12 +18,12 @@ Accept: {{accept}}
 Authorization:
 
 {
-    "username":"hjk@admin.com",
+    "username":"hjkl@admin.com",
     "password":"Admin@123"
 }
 
 ###local
-@authorization = Bearer OGQ2MzFlMzBiYjUxZmM2OmJlOWUyNDk2OTAwYmViNA==
+@authorization = Bearer MTk0MTA0MzA1M2NkOTMyOmU1ZmE0YTQ0YmU0NmY3YQ==
 
 ### server
 # @authorization = Bearer MzNhNTUxNGEzNmU3NjAzOjY5ZmQ2NGYxMzk2YThkZA==
@@ -44,10 +44,10 @@ Accept: {{accept}}
 Authorization:
 
 {
-    "email":"hjk@admin.com",
-    "full_name":"HJK Mathew",
+    "email":"hjkl@admin.com",
+    "full_name":"HJKL Mathew",
     "password":"Admin@123",
-    "mobile_number":"4722874654"
+    "mobile_number":"4722874659"
 }
 
 
@@ -58,6 +58,16 @@ Content-Type: {{contentType}}
 Accept: {{accept}}
 Authorization:{{authorization}}
 
+
+### delete_profile
+POST {{host}}{{path}}.login.delete_profile
+Content-Type: {{contentType}}
+Accept: {{accept}}
+Authorization:{{authorization}}
+
+{
+    "username":"hjkl@admin.com"
+}
 
 
 ### forgot_password api
@@ -387,7 +397,7 @@ Accept: {{accept}}
 Authorization:{{authorization}}
 
 {   
-    "address_title":"Eby 555",
+    "address_title":"Eby 5557",
     "address_line1":"Eby-Billing",
     "address_line2":"Eby villa",
     "city":"New One",

@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include bezzie *.css
+recursive-include bezzie *.csv
+recursive-include bezzie *.html
+recursive-include bezzie *.ico
+recursive-include bezzie *.js
+recursive-include bezzie *.json
+recursive-include bezzie *.md
+recursive-include bezzie *.png
+recursive-include bezzie *.py
+recursive-include bezzie *.svg
+recursive-include bezzie *.txt
+recursive-exclude bezzie *.pyc

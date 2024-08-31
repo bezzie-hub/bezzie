@@ -1,0 +1,99 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-02-09 14:15:05.285818",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "company_name",
+  "enable",
+  "notes",
+  "featured_products_section",
+  "featured_products",
+  "popular_products_section",
+  "popular_products",
+  "top_categories"
+ ],
+ "fields": [
+  {
+   "fieldname": "company_name",
+   "fieldtype": "Link",
+   "label": "Company Name ",
+   "options": "Company"
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Text",
+   "label": "Notes"
+  },
+  {
+   "fieldname": "featured_products_section",
+   "fieldtype": "Section Break",
+   "label": "Featured Products"
+  },
+  {
+   "fieldname": "featured_products",
+   "fieldtype": "Table",
+   "label": "Featured Products",
+   "options": "Featured Products"
+  },
+  {
+   "fieldname": "popular_products_section",
+   "fieldtype": "Section Break",
+   "label": "Popular Products"
+  },
+  {
+   "fieldname": "popular_products",
+   "fieldtype": "Table",
+   "label": "Popular Products",
+   "options": "Popular Products"
+  },
+  {
+   "default": "0",
+   "fieldname": "enable",
+   "fieldtype": "Check",
+   "label": "Enable"
+  },
+  {
+   "fieldname": "top_categories",
+   "fieldtype": "Table",
+   "label": "Top Categories",
+   "options": "Top Categories"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2023-12-06 12:46:59.363313",
+ "modified_by": "Administrator",
+ "module": "Bezzie",
+ "name": "Bezzie Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "All",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

@@ -1,0 +1,144 @@
+{
+ "charts": [],
+ "content": "[{\"id\":\"qKYF4TdpXz\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Bezzie</span>\",\"col\":12}},{\"id\":\"hL1TjZDKYg\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Bezzie Settings\",\"col\":3}},{\"id\":\"LT6QYA8oMI\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"E Commerce Settings\",\"col\":3}},{\"id\":\"IO-p9TXJxp\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Website Item\",\"col\":3}},{\"id\":\"HNJ7KzPmMv\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Item\",\"col\":3}},{\"id\":\"un2NV8EXl3\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Item Group\",\"col\":3}},{\"id\":\"UOKuXbeFIh\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"UhFttX3M2k\",\"type\":\"card\",\"data\":{\"card_name\":\"Sales\",\"col\":4}},{\"id\":\"qFQ_oEpw5t\",\"type\":\"card\",\"data\":{\"card_name\":\"Stock\",\"col\":4}}]",
+ "creation": "2023-11-29 19:17:26.457151",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "retail",
+ "idx": 0,
+ "is_hidden": 0,
+ "label": "Bezzie",
+ "links": [
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Sales",
+   "link_count": 3,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Quotation",
+   "link_count": 0,
+   "link_to": "Quotation",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Sales Invoice",
+   "link_count": 0,
+   "link_to": "Sales Invoice",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Sales Order",
+   "link_count": 0,
+   "link_to": "Sales Order",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Stock",
+   "link_count": 3,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Item",
+   "link_count": 0,
+   "link_to": "Item",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Item Group",
+   "link_count": 0,
+   "link_to": "Item Group",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Website Item",
+   "link_count": 0,
+   "link_to": "Website Item",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  }
+ ],
+ "modified": "2023-12-08 13:13:39.323824",
+ "modified_by": "Administrator",
+ "module": "Bezzie",
+ "name": "Bezzie",
+ "number_cards": [],
+ "owner": "Administrator",
+ "parent_page": "",
+ "public": 1,
+ "quick_lists": [],
+ "roles": [],
+ "sequence_id": 2.0,
+ "shortcuts": [
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Website Item",
+   "link_to": "Website Item",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Item",
+   "link_to": "Item",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "E Commerce Settings",
+   "link_to": "E Commerce Settings",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Bezzie Settings",
+   "link_to": "Bezzie Settings",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Item Group",
+   "link_to": "Item Group",
+   "stats_filter": "[]",
+   "type": "DocType"
+  }
+ ],
+ "title": "Bezzie"
+}

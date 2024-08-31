@@ -1,0 +1,511 @@
+
+# @host = http://127.0.0.1:8011
+
+#staging
+@host = http://155.248.249.60
+@version = v14
+@path = /api/method/bezzie.mob.{{version}}.v1
+@contentType = application/json
+@accept = application/json
+
+
+### LOGIN.PY ================================ LOGIN Page =================================
+
+### login 
+POST {{host}}{{path}}.login.login
+Content-Type: {{contentType}}
+Accept: {{accept}}
+Authorization:
+
+{
+    "username":"hjk@admin.com",
+    "password":"Admin@123"
+}
+
+###local
+@authorization = Bearer OGQ2MzFlMzBiYjUxZmM2OmJlOWUyNDk2OTAwYmViNA==
+
+### server
+# @authorization = Bearer MzNhNTUxNGEzNmU3NjAzOjY5ZmQ2NGYxMzk2YThkZA==
+
+###
+
+### logout
+GET {{host}}/api/method/logout
+Content-Type: {{contentType}}
+Accept: {{accept}}
+
+
+
+### signup 
+POST {{host}}{{path}}.login.sign_up
+Content-Type: {{contentType}}
+Accept: {{accept}}
+Authorization:
+
+{
+    "email":"hjk@admin.com",
+    "full_name":"HJK Mathew",
+    "password":"Admin@123",
+    "mobile_number":"4722874654"
+}
+
+
+
+### get profile
+GET {{host}}{{path}}.login.get_profile
+Content-Type: {{contentType}}
+Accept: {{accept}}
+Authorization:{{authorization}}
+
+
+
+### forgot_password api
+POST {{host}}{{path}}.login.forgot_password
+Content-Type: {{contentType}}
+Accept: {{accept}}
+
+{
+    "username":"hjk@admin.com",
+    "token":"fjEB2j0HdE4cubJOKkHfpDBSvg2pKu",
+    "password":"Admin@123",
+    "re_password":"Admin@123"
+}
+
+
+
+
+### reset_password api
+POST {{host}}{{path}}.login.reset_password
+Content-Type: {{contentType}}
+Accept: {{accept}}
+
+{
+    "username":"hjk@admin.com",
+    "old_password":"Admin@123",
+    "password":"Admin@123",
+    "re_password":"Admin@123"
+}
+
+
+
+### send_otp api
+GET  {{host}}{{path}}.login.send_otp
+Content-Type: {{contentType}}
+Accept: {{accept}}
+
+{
+    "username":"hjk@admin.com"
+}
+
+
+### send_otp api
+GET  {{host}}{{path}}.login.resend_otp
+Content-Type: {{contentType}}
+Accept: {{accept}}
+
+{
+    "username":"eby@admin.com"
+}
+
+
+
+### validate_otp api
+GET  {{host}}{{path}}.login.validate_otp
+Content-Type: {{contentType}}
+Accept: {{accept}}
+
+{
+    "username":"hjk@admin.com",
+    "otp":"111111"
+}
+
+### test api
+GET {{host}}{{path}}.login.ping_pong
+Content-Type: {{contentType}}
+Accept: {{accept}}
+Authorization:{{authorization}}
+
+{
+    "ping":"ping"
+}
+
+###
+
+### HOME.PY ==================================================================
+
+### get home page
+GET {{host}}{{path}}.home.home_page
+Content-Type: {{contentType}}
+Accept: {{accept}}
+
+{
+}
+
+### get E Commerce Settings
+GET {{host}}{{path}}.home.get_settings
+Content-Type: {{contentType}}
+Accept: {{accept}}
+
+{
+}
+
+
+### test api
+GET {{host}}{{path}}.home.ping_pong
+Content-Type: {{contentType}}
+Accept: {{accept}}
+
+{
+    "ping":"ping"
+}
+
+
+
+### PRODUCTS_LIST.PY ========================= PLP Page=======================================
+
+### list all products without any filter
+GET {{host}}{{path}}.products_list.get_all_products
+Content-Type: {{contentType}}
+Accept: {{accept}}
+# Authorization:{{authorization}}
+
+{
+"start":0
+}
+
+### list all products with filters
+GET {{host}}{{path}}.products_list.get_products_with_filters
+Content-Type: {{contentType}}
+Accept: {{accept}}
+Authorization:
+
+
+{
+    "field_filters":{},
+    "attribute_filters":{},
+    "start":0,
+    "item_group":"Men",
+    "search":"Men Blue"
+}
+
+### list all products with Category
+GET {{host}}{{path}}.products_list.get_products_with_category
+Content-Type: {{contentType}}
+Accept: {{accept}}
+Authorization:
+
+
+{
+    "start":0,
+    "item_group":"Shirt"
+}
+
+
+### list all Category
+GET {{host}}{{path}}.products_list.get_all_category
+Content-Type: {{contentType}}
+Accept: {{accept}}
+Authorization:
+
+### list all Category Tabs
+GET {{host}}{{path}}.products_list.get_category_tabs
+Content-Type: {{contentType}}
+Accept: {{accept}}
+Authorization:
+
+
+### Product search
+GET {{host}}{{path}}.products_list.search_products
+Content-Type: {{contentType}}
+Accept: {{accept}}
+Authorization:
+
+{
+    "start":0,
+    "search":"Men"
+}
+
+### test api
+GET {{host}}{{path}}.products_list.ping_pong
+Content-Type: {{contentType}}
+Accept: {{accept}}
+Authorization:
+
+{
+    "ping":"ping"
+}
+
+
+
+
+
+### PRODUCT_DETAILS.PY ====================== PDP Page==========================================
+
+
+
+###  get product details
+GET {{host}}{{path}}.product_details.get_product_details
+Content-Type: {{contentType}}
+Accept: {{accept}}
+Authorization:
+
+{
+    "item_code":"0020"
+}
+
+###  get product review
+GET {{host}}{{path}}.product_details.get_reviews
+Content-Type: {{contentType}}
+Accept: {{accept}}
+Authorization:{{authorization}}
+
+{
+    "item_code":"7369",
+    "start":0,
+    "end":10
+}
+###  add product review
+POST {{host}}{{path}}.product_details.add_review
+Content-Type: {{contentType}}
+Accept: {{accept}}
+Authorization:{{authorization}}
+
+{
+    "item_code":"7369",
+    "title":"Great Laptop",
+    "rating": 5,
+    "comment": "Nice Product"
+}
+
+
+### test api
+GET {{host}}{{path}}.product_details.ping_pong
+Content-Type: {{contentType}}
+Accept: {{accept}}
+Authorization:
+
+{
+    "ping":"ping"
+}
+
+
+
+
+
+###
+
+
+### CART.PY ==================================================================
+
+### list all products without any filter 
+#just for get item code for add to cart option
+GET {{host}}{{path}}.products_list.get_all_products
+Content-Type: {{contentType}}
+Accept: {{accept}}
+Authorization:{{authorization}}
+
+{
+"start":0
+}
+
+### add item to cart
+POST {{host}}{{path}}.cart.add_to_cart
+Content-Type: {{contentType}}
+Accept: {{accept}}
+Authorization:{{authorization}}
+
+{
+    "item_code":"0001",
+    "qty":2,
+    "with_items":1
+}
+
+
+
+### get_cart of customer
+POST {{host}}{{path}}.cart.get_cart
+Content-Type: {{contentType}}
+Accept: {{accept}}
+Authorization:{{authorization}}
+
+{
+
+}
+
+
+### apply_coupon_code in quotation
+POST {{host}}{{path}}.cart.apply_couponcode
+Content-Type: {{contentType}}
+Accept: {{accept}}
+Authorization:{{authorization}}
+
+{
+    "code":"MYOFFER10"
+}
+
+### get shipping_addresses_list  of customer
+POST {{host}}{{path}}.cart.shipping_addresses_list
+Content-Type: {{contentType}}
+Accept: {{accept}}
+Authorization:{{authorization}}
+
+{
+
+}
+
+### get billing_addresses_list of customer
+POST {{host}}{{path}}.cart.billing_addresses_list
+Content-Type: {{contentType}}
+Accept: {{accept}}
+Authorization:{{authorization}}
+
+{
+
+}
+
+
+### update cart addresses of customer
+POST {{host}}{{path}}.cart.cart_update_address
+Content-Type: {{contentType}}
+Accept: {{accept}}
+Authorization:{{authorization}}
+
+{
+    "address_type":"billing",
+    "address_name":"Arun-Billing"
+}
+
+
+
+
+### add a new  address of customer  	address_type ==	'Billing'/Shipping'
+# MANDATORY "address_title""address_line1""country""address_type""Phone"
+POST {{host}}{{path}}.cart.add_address
+Content-Type: {{contentType}}
+Accept: {{accept}}
+Authorization:{{authorization}}
+
+{   
+    "address_title":"Eby 555",
+    "address_line1":"Eby-Billing",
+    "address_line2":"Eby villa",
+    "city":"New One",
+    "state":"New ",
+    "country":"India",
+    "address_type":"Billing",
+    "pincode":"78728",
+    "phone":"728827388"
+}
+
+
+### update  address of customer  primaery key is name 	address_type ==	'Billing'/Shipping'
+# MANDATORY "address_title""address_line1""country""address_type""Phone"
+POST {{host}}{{path}}.cart.update_address
+Content-Type: {{contentType}}
+Accept: {{accept}}
+Authorization:{{authorization}}
+
+{
+    "name":"Eby 33-Billing",
+    "address_title":"billingsrrss",
+    "address_line1":"Eby-Billing",
+    "address_line2":"sad villassss",
+    "city":"New ",
+    "state":"New ",
+    "country":"India",
+    "address_type":"Billing",
+    "pincode":"78728",
+    "phone":"8272827827"
+}
+
+
+### update  address of customer  primaery key is name 	address_type ==	'Billing'/Shipping'
+# MANDATORY "address_title""address_line1""country""address_type""Phone"
+POST {{host}}{{path}}.cart.delete_address
+Content-Type: {{contentType}}
+Accept: {{accept}}
+Authorization:{{authorization}}
+
+{
+    "name":"Eby 333-Billing"
+}
+
+
+### Place cart order
+POST {{host}}{{path}}.cart.place_cart_order
+Content-Type: {{contentType}}
+Accept: {{accept}}
+Authorization:{{authorization}}
+
+{
+
+}
+
+
+### test api
+GET {{host}}{{path}}.cart.ping_pong
+Content-Type: {{contentType}}
+Accept: {{accept}}
+
+{
+    "ping":"ping"
+}
+
+
+
+
+### CHECKOUT.PY ==================================================================
+
+
+### submit so and make payment request api
+POST {{host}}{{path}}.checkout.make_payment
+Content-Type: {{contentType}}
+Accept: {{accept}}
+Authorization:{{authorization}}
+
+{
+    "sales_order_id":"SAL-ORD-2024-00003"
+}
+
+
+
+### test api
+GET {{host}}{{path}}.checkout.ping_pong
+Content-Type: {{contentType}}
+Accept: {{accept}}
+
+{
+    "ping":"ping"
+}
+
+### ORDERES.PY ==================================================================
+
+
+### get sales orders list api
+GET  {{host}}{{path}}.orders.get_sales_orders
+Content-Type: {{contentType}}
+Accept: {{accept}}
+
+{
+}
+
+
+### get sales order api
+GET  {{host}}{{path}}.orders.get_sales_order
+Content-Type: {{contentType}}
+Accept: {{accept}}
+
+{
+    "sales_order":"SAL-ORD-2024-00002"
+}
+
+
+### test api
+GET {{host}}{{path}}.orders.ping_pong
+Content-Type: {{contentType}}
+Accept: {{accept}}
+
+{
+    "ping":"ping"
+}

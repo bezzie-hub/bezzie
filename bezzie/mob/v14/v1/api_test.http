@@ -1,8 +1,7 @@
 
 @host = http://127.0.0.1:8011
 
-#staging
-# @host = http://155.248.249.60
+
 @version = v14
 @path = /api/method/bezzie.mob.{{version}}.v1
 @contentType = application/json
@@ -23,12 +22,7 @@ Authorization:
 }
 
 ###local
-@authorization = Bearer MTk0MTA0MzA1M2NkOTMyOmU1ZmE0YTQ0YmU0NmY3YQ==
 
-### server
-# @authorization = Bearer MzNhNTUxNGEzNmU3NjAzOjY5ZmQ2NGYxMzk2YThkZA==
-
-###
 
 ### logout
 GET {{host}}/api/method/logout

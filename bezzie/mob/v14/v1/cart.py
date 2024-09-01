@@ -39,8 +39,8 @@ def get_cart():
 		if cart.get("doc").get("name"):
 			data.update({"cart_id":cart.get("doc").get("name")})
 			data.update({"cart":cart.get("doc")})
-			data.update({"shipping_address":get_cart_address(cart.get("doc").get("shipping_address_name"))})
-			data.update({"billing_address":get_cart_address(cart.get("doc").get("customer_address"))})
+			data.update({"shipping_address":get_cart_address(cart.get("doc").get("shipping_address_name")) if cart.get("doc").get("shipping_address_name") else ''})
+			data.update({"billing_address":get_cart_address(cart.get("doc").get("customer_address")) if cart.get("doc").get("customer_address") else ''})
 			data.update({"shipping_rules":cart.get("shipping_rules")})
 			frappe.response["data"] = data
 			frappe.local.response["status_code"] =200

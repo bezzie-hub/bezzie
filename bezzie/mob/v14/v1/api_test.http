@@ -23,7 +23,7 @@ Authorization:
 
 ###local
 
-
+@authorization="NDcxNmJmZjg4NGU5ZDNiOjQ3NTQwNzNkYTJmNzFiNg=="
 ### logout
 GET {{host}}/api/method/logout
 Content-Type: {{contentType}}
@@ -38,10 +38,10 @@ Accept: {{accept}}
 Authorization:
 
 {
-    "email":"hjkl@admin.com",
+    "email":"hjkll@admin.com",
     "full_name":"HJKL Mathew",
     "password":"Admin@123",
-    "mobile_number":"4722874659"
+    "mobile_number":"4722874654"
 }
 
 
@@ -60,7 +60,7 @@ Accept: {{accept}}
 Authorization:{{authorization}}
 
 {
-    "username":"hjkl@admin.com"
+    "username":"hjkll@admin.com"
 }
 
 

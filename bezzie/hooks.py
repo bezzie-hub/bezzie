@@ -179,3 +179,14 @@ user_data_fields = [
 #	"bezzie.auth.validate"
 # ]
 
+fixtures = [
+    {
+        "doctype": "Custom Field",
+        "filters": [[
+                "name","in",
+                [
+				"Address-custom_full_name"
+                ]
+            ]],
+    },
+]

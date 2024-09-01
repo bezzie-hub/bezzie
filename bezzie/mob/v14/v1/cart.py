@@ -170,8 +170,8 @@ def add_address(**kwargs):
 		val={}
 		if not kwargs.get("address_title"):
 			val.update({"address_title":"Address Title is Mandatory"})
-		# if frappe.db.exists("Address", {"address_title": kwargs.get("address_title")}):
-		# 	val.update({"address_title":"Address Title already exists"})
+		if frappe.db.exists("Address", {"address_title": kwargs.get("address_title")}):
+			val.update({"address_title":"Address Title already exists"})
 		if not kwargs.get("address_line1"):
 			val.update({"address_line1":"Address Line  is Mandatory"})
 		if not kwargs.get("city"):

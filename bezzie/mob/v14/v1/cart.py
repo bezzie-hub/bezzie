@@ -3,25 +3,34 @@
 
 import frappe
 from frappe.utils import validate_email_address, validate_name, validate_phone_number
+from frappe.utils.data import cint
 
-from erpnext.e_commerce.shopping_cart.cart import get_address_docs, get_party, update_cart
+from erpnext.e_commerce.shopping_cart.cart import _get_cart_quotation, get_address_docs, get_party, update_cart
 from erpnext.e_commerce.shopping_cart.cart import get_cart_quotation
 from erpnext.e_commerce.shopping_cart.cart import apply_coupon_code
 from erpnext.e_commerce.shopping_cart.cart import place_order
 from erpnext.e_commerce.shopping_cart.cart import update_cart_address ,get_shipping_addresses,get_billing_addresses
 from erpnext.e_commerce.shopping_cart.cart import add_new_address
+from erpnext.utilities.product import get_web_item_qty_in_stock
 
 from frappe.utils import getdate, today
 
-from frappe.exceptions import ValidationError
+from frappe.exceptions import DataError, ValidationError
 
 # tesing api 
 @frappe.whitelist()
 def add_to_cart(item_code,qty,with_items): 
 	try:
+		item_stock = get_web_item_qty_in_stock(item_code, "website_warehouse")
+		if qty > item_stock.stock_qty:
+			raise ValidationError
 		frappe.response["data"] = update_cart(item_code, qty, with_items)
 		frappe.local.response["status_code"] =200
 		frappe.local.response["message"] ="Success"
+	except ValidationError:
+		frappe.local.response["status_code"] =403
+		frappe.local.response["message"] =("Only {0} in Stock for item {1}").format(item_stock.stock_qty,item_code)
+		frappe.response["data"] = item_stock.update({"in_stock":0,"requested_qty":qty})
 	except AttributeError:
 		frappe.local.response["status_code"] =204
 		frappe.local.response["message"] ="Cart is empty"
@@ -36,9 +45,26 @@ def get_cart():
 	try:
 		data={}
 		cart = get_cart_quotation()
+		
 		if cart.get("doc").get("name"):
+			it = cart.get("doc").get("items")
+			items = [x.as_dict() for x in it]
+			for item in items:
+				item_stock = get_web_item_qty_in_stock(item.item_code, "website_warehouse")
+				item.update({
+						"in_stock": 1,
+						"in_stock_qty": item_stock.stock_qty,
+						"is_stock_item": item_stock.is_stock_item,
+						"requested_qty": item.qty
+					})
+				if item.qty > item_stock.stock_qty:
+					item.update({
+						"in_stock": 0,
+						"in_stock_qty": item_stock.stock_qty
+					})
 			data.update({"cart_id":cart.get("doc").get("name")})
 			data.update({"cart":cart.get("doc")})
+			data.update({"items":items})
 			data.update({"shipping_address":get_cart_address(cart.get("doc").get("shipping_address_name")) if cart.get("doc").get("shipping_address_name") else ''})
 			data.update({"billing_address":get_cart_address(cart.get("doc").get("customer_address")) if cart.get("doc").get("customer_address") else ''})
 			data.update({"shipping_rules":cart.get("shipping_rules")})
@@ -92,7 +118,8 @@ def shipping_addresses_list():
 		addresses = get_address_docs(party=party)
 		data = [
 				{
-					"name": address.name, 
+					"name": address.name,
+					"custom_full_name":address.custom_full_name,
 					"title": address.address_title,
 					"address_title" :address.address_title,
 					"address_line1":address.address_line1,
@@ -123,6 +150,7 @@ def billing_addresses_list():
 		data = [
 				{
 					"name": address.name, 
+					"custom_full_name":address.custom_full_name,
 					"title": address.address_title,
 					"address_title" :address.address_title,
 					"address_line1":address.address_line1,
@@ -168,12 +196,12 @@ def cart_update_address(address_type, address_name):
 def add_address(**kwargs):
 	try:
 		val={}
-		if not kwargs.get("address_title"):
-			val.update({"address_title":"Address Title is Mandatory"})
-		# if frappe.db.exists("Address", {"address_title": kwargs.get("address_title")}):
-		# 	val.update({"address_title":"Address Title already exists"})
+		if not kwargs.get("custom_full_name"):
+			val.update({"custom_full_name":"Full Name is Mandatory"})
 		if not kwargs.get("address_line1"):
 			val.update({"address_line1":"Address Line  is Mandatory"})
+		if frappe.db.exists("Address", {"address_title": "{0}-{1}".format(kwargs.get("custom_full_name"),kwargs.get("address_line1"))}):
+			val.update({"custom_full_name":"Full Name already exists Please change Full Name "})
 		if not kwargs.get("city"):
 			val.update({"city":"City is Mandatory"})
 		if not kwargs.get("country"):
@@ -185,7 +213,12 @@ def add_address(**kwargs):
 		if val:
 			raise ValidationError
 		
-		kwargs.update({"is_primary_address":1,"is_shipping_address":1})
+		kwargs.update({
+			"address_title":"{0}-{1}".format(kwargs.get("custom_full_name"),kwargs.get("address_line1")),
+			"is_primary_address":1,
+	 		"is_shipping_address":1,
+			"custom_full_name":kwargs.get("custom_full_name")
+			})
 		frappe.response["data"] = add_new_address(doc = kwargs)
 		frappe.local.response["status_code"] =200
 		frappe.local.response["message"] ="Success"
@@ -202,10 +235,6 @@ def add_address(**kwargs):
 def update_address(**kwargs):
 	try:
 		val={}
-		# if not kwargs.get("address_title"):
-		# 	val.update({"address_title":"Address Title is Mandatory"})
-		# if frappe.db.exists("Address", {"address_title": kwargs.get("address_title")}):
-		# 	val.update({"address_title":"Address Title already exists"})
 		if not kwargs.get("address_line1"):
 			val.update({"address_line1":"Address Line  is Mandatory"})
 		if not kwargs.get("city"):
@@ -259,12 +288,28 @@ def get_cart_address(address_name):
 @frappe.whitelist()
 def place_cart_order():
 	try:
+		quotation = _get_cart_quotation()
+		if not quotation.customer_address:
+			raise DataError
+		
+		for item in quotation.items:
+			item_stock = get_web_item_qty_in_stock(item.item_code, "website_warehouse")
+			if item.qty > item_stock.stock_qty:
+				raise ValidationError
+			
 		frappe.response["data"] = place_order() 
 		frappe.local.response["status_code"] =200
 		frappe.local.response["message"] ="Success"
+	except DataError:
+		frappe.local.response["status_code"] =403
+		frappe.local.response["message"] ="Please select a Billing Address"
 	except TypeError:
 		frappe.local.response["status_code"] =204
 		frappe.local.response["message"] ="Cart is empty"	
+	except ValidationError:
+		frappe.local.response["status_code"] =403
+		frappe.local.response["message"] ="Some Items are Out of Stock. Please Check Your Cart"
+		frappe.response["data"] = {}
 	except:
 		frappe.local.response["status_code"] =500
 		frappe.local.response["message"] ="Something went wrong"

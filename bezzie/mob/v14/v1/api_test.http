@@ -23,7 +23,7 @@ Authorization:
 
 ###local
 
-@authorization="NDcxNmJmZjg4NGU5ZDNiOjQ3NTQwNzNkYTJmNzFiNg=="
+@authorization="YjY2MGFkYWU3ZTdjZTY5OmFmNWU3MzQxMWUyMWNhNg=="
 ### logout
 GET {{host}}/api/method/logout
 Content-Type: {{contentType}}
@@ -38,7 +38,7 @@ Accept: {{accept}}
 Authorization:
 
 {
-    "email":"hjkll@admin.com",
+    "email":"hjklll@admin.com",
     "full_name":"HJKL Mathew",
     "password":"Admin@123",
     "mobile_number":"4722874654"
@@ -320,8 +320,8 @@ Accept: {{accept}}
 Authorization:{{authorization}}
 
 {
-    "item_code":"0001",
-    "qty":2,
+    "item_code":"0002",
+    "qty":3,
     "with_items":1
 }
 
@@ -391,8 +391,8 @@ Accept: {{accept}}
 Authorization:{{authorization}}
 
 {   
-    "address_title":"Eby 5557",
-    "address_line1":"Eby-Billing",
+    "custom_full_name":"Eby Mathew",
+    "address_line1":"Parakunnel",
     "address_line2":"Eby villa",
     "city":"New One",
     "state":"New ",
@@ -411,8 +411,9 @@ Accept: {{accept}}
 Authorization:{{authorization}}
 
 {
-    "name":"Eby 33-Billing",
-    "address_title":"billingsrrss",
+    "name":"Eby Mathew-Parakunnel-Billing",
+    "custom_full_name":"Eby ",
+    "address_title":"Eby",
     "address_line1":"Eby-Billing",
     "address_line2":"sad villassss",
     "city":"New ",
@@ -469,7 +470,7 @@ Accept: {{accept}}
 Authorization:{{authorization}}
 
 {
-    "sales_order_id":"SAL-ORD-2024-00003"
+    "sales_order_id":"SAL-ORD-2024-00005"
 }
 
 

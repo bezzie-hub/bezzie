@@ -17,13 +17,13 @@ Accept: {{accept}}
 Authorization:
 
 {
-    "username":"hjkl@admin.com",
+    "username":"hjklll@admin.com",
     "password":"Admin@123"
 }
 
 ###local
 
-@authorization="YjY2MGFkYWU3ZTdjZTY5OmFmNWU3MzQxMWUyMWNhNg=="
+@authorization="YjY2MGFkYWU3ZTdjZTY5OjhkMTVjZmJhMTE3NjQwZQ=="
 ### logout
 GET {{host}}/api/method/logout
 Content-Type: {{contentType}}
@@ -380,6 +380,14 @@ Authorization:{{authorization}}
     "address_name":"Arun-Billing"
 }
 
+### get all country list
+POST {{host}}{{path}}.cart.get_all_country
+Content-Type: {{contentType}}
+Accept: {{accept}}
+Authorization:{{authorization}}
+
+{
+}
 
 
 
@@ -392,7 +400,7 @@ Authorization:{{authorization}}
 
 {   
     "custom_full_name":"Eby Mathew",
-    "address_line1":"Parakunnel",
+    "address_line1":"Parakunnell",
     "address_line2":"Eby villa",
     "city":"New One",
     "state":"New ",

@@ -189,6 +189,25 @@ def cart_update_address(address_type, address_name):
 		frappe.local.response["message"] ="Something went wrong"
 
 
+# get sales orders list
+@frappe.whitelist()
+def get_all_country():
+	try:
+		country = frappe.get_all(
+			"Country",
+			fields=["name","code"],
+			order_by="name",
+		)
+
+		# for i in sales_orders:
+		# 	so = frappe.get_doc("Sales Order",i.get("name"))
+		# 	data.append(so)
+		frappe.response["data"] =country
+		frappe.local.response["status_code"] =200
+		frappe.local.response["message"] ="Success"
+	except:
+		frappe.local.response["status_code"] =500
+		frappe.local.response["message"] ="Something went wrong"
 
 
 # add a new  address

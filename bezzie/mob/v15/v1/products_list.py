@@ -1,15 +1,15 @@
 # Copyright (c) 2022, D-codE and contributors
 # For license information, please see license.txt
-# 418abbefb15d68e
-# 37d29fd6c37279d
 
 
 import frappe
 
-from erpnext.e_commerce.api import get_product_filter_data
-from erpnext.e_commerce.product_data_engine.filters import ProductFiltersBuilder
-from erpnext.templates.pages.product_search import search
-from erpnext.setup.doctype.item_group.item_group import get_child_item_groups
+from webshop.webshop.api import get_product_filter_data
+from webshop.webshop.product_data_engine.filters import ProductFiltersBuilder
+from webshop.webshop.shopping_cart.product_info import get_product_info_for_website
+from webshop.webshop.doctype.item_review.item_review import add_item_review, get_item_reviews, get_customer
+from webshop.webshop.variant_selector.utils import get_attributes_and_values, get_next_attribute_and_values
+
 
 
 def query_builder(field_filters=None,attribute_filters=None,start=None,item_group=None,search=""):
@@ -131,7 +131,7 @@ def get_all_category():
 
 	try:
 
-		settings = frappe.get_cached_doc("E Commerce Settings")
+		settings = frappe.get_cached_doc("Webshop Settings")
 		categories_enabled = settings.enable_field_filters
 
 		if categories_enabled:
@@ -218,12 +218,7 @@ def ping_pong(ping):
 
 ########################################################################
 
-# from bezzie.api.V_0_1.product_query import get_product_filter_data
-# from erpnext.e_commerce.api import get_product_filter_data
-from erpnext.e_commerce.shopping_cart.product_info import get_product_info_for_website
-from erpnext.e_commerce.doctype.item_review.item_review import add_item_review, get_item_reviews, get_customer
-from erpnext.e_commerce.variant_selector.utils import get_attributes_and_values, get_next_attribute_and_values
-# from frappe.website.doctype.website_slideshow.website_slideshow import get_slideshow
+
 
 # list product with group search and using other filterss
 @frappe.whitelist(allow_guest=True)

@@ -1,9 +1,12 @@
+# Copyright (c) 2022, D-codE and contributors
+# For license information, please see license.txt
 
 import frappe
 
-from erpnext.e_commerce.shopping_cart.product_info import get_product_info_for_website
-from erpnext.e_commerce.doctype.item_review.item_review import add_item_review, get_item_reviews, get_customer
-from erpnext.e_commerce.variant_selector.utils import get_attributes_and_values, get_next_attribute_and_values
+from webshop.webshop.shopping_cart.product_info import get_product_info_for_website
+from webshop.webshop.doctype.item_review.item_review import add_item_review, get_item_reviews, get_customer
+from webshop.webshop.variant_selector.utils import get_attributes_and_values, get_next_attribute_and_values
+
 # from frappe.website.doctype.website_slideshow.website_slideshow import get_slideshow
 
 
@@ -15,7 +18,7 @@ def get_product_details(item_code):
 	try:
 		data={}
 		web_item_name, item_group,brand,description = frappe.db.get_value("Website Item", 
-											   {"item_code": item_code},
+											   {"item_code":item_code},
 											   ["web_item_name", "item_group","brand","description"])
 		pinf=get_product_info_for_website(item_code).get("product_info")
 		pinf.update({
@@ -31,8 +34,8 @@ def get_product_details(item_code):
 		frappe.response["data"]=data
 		frappe.local.response["status_code"] =200
 		frappe.local.response["message"] ="Success"
-	except:
-		frappe.local.response["status_code"] =500
+	except Exception as e:
+		frappe.local.response["status_code"] =e
 		frappe.local.response["message"] ="Something went wrong"
 
 # get product reviews

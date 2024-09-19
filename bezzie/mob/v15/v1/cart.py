@@ -5,13 +5,16 @@ import frappe
 from frappe.utils import validate_email_address, validate_name, validate_phone_number
 from frappe.utils.data import cint
 
-from erpnext.e_commerce.shopping_cart.cart import _get_cart_quotation, get_address_docs, get_party, update_cart
-from erpnext.e_commerce.shopping_cart.cart import get_cart_quotation
-from erpnext.e_commerce.shopping_cart.cart import apply_coupon_code
-from erpnext.e_commerce.shopping_cart.cart import place_order
-from erpnext.e_commerce.shopping_cart.cart import update_cart_address ,get_shipping_addresses,get_billing_addresses
-from erpnext.e_commerce.shopping_cart.cart import add_new_address
-from erpnext.utilities.product import get_web_item_qty_in_stock
+from webshop.webshop.shopping_cart.cart import (get_address_docs, 
+												get_party, update_cart,
+												get_cart_quotation,
+												apply_coupon_code,
+												place_order,
+												update_cart_address,get_shipping_addresses,get_billing_addresses,
+												add_new_address,
+												_get_cart_quotation)
+
+from webshop.webshop.utils.product import (get_non_stock_item_status, get_web_item_qty_in_stock)
 
 from frappe.utils import getdate, today
 

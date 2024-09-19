@@ -4,8 +4,8 @@
 import frappe
 from frappe import _
 
-from erpnext.e_commerce.shopping_cart.cart import get_party
-from bezzie.mob.v14.v1.cart import get_cart_address
+from webshop.webshop.shopping_cart.cart import get_party
+from bezzie.mob.v15.v1.cart import get_cart_address
 
 
 # get sales orders list

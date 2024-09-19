@@ -1,5 +1,5 @@
-# Copyright (c) 2015, Frappe Technologies Pvt. Ltd. and Contributors
-# License: GNU General Public License v3. See license.txt
+# Copyright (c) 2022, D-codE and contributors
+# For license information, please see license.txt
 
 import frappe
 from frappe import _

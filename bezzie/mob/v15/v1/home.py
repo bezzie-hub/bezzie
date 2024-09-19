@@ -3,7 +3,7 @@
 
 import frappe
 
-from bezzie.mob.v14.v1.products_list import (get_products,
+from bezzie.mob.v15.v1.products_list import (get_products,
                                             query_builder)
 # get home page
 @frappe.whitelist(allow_guest=True)
@@ -35,7 +35,7 @@ def get_settings():
 	try:
 		frappe.local.response["status_code"] =200
 		frappe.local.response["message"] ="Success"
-		frappe.local.response["data"] = frappe.get_cached_doc("E Commerce Settings")
+		frappe.local.response["data"] = frappe.get_cached_doc("Webshop Settings")
 	except:
 		frappe.local.response["status_code"] =500
 		frappe.local.response["message"] ="Something went wrong"

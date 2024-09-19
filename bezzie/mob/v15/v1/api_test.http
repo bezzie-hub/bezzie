@@ -1,8 +1,8 @@
 
-@host = http://127.0.0.1:8011
+@host = http://127.0.0.1:8009
 
 
-@version = v14
+@version = v15
 @path = /api/method/bezzie.mob.{{version}}.v1
 @contentType = application/json
 @accept = application/json
@@ -17,13 +17,13 @@ Accept: {{accept}}
 Authorization:
 
 {
-    "username":"hjklll@admin.com",
+    "username":"hjkk@admin.com",
     "password":"Admin@123"
 }
 
 ###local
 
-@authorization="YjY2MGFkYWU3ZTdjZTY5OjhkMTVjZmJhMTE3NjQwZQ=="
+@authorization="ZDQzOWNhZGUzMjJlYWMxOjIwOTM3YzhlNmUwNjhkOA=="
 ### logout
 GET {{host}}/api/method/logout
 Content-Type: {{contentType}}
@@ -38,10 +38,10 @@ Accept: {{accept}}
 Authorization:
 
 {
-    "email":"hjklll@admin.com",
+    "email":"hjkk@admin.com",
     "full_name":"HJKL Mathew",
     "password":"Admin@123",
-    "mobile_number":"4722874654"
+    "mobile_number":"4722874624"
 }
 
 
@@ -103,7 +103,7 @@ Accept: {{accept}}
 }
 
 
-### send_otp api
+### resend_otp api
 GET  {{host}}{{path}}.login.resend_otp
 Content-Type: {{contentType}}
 Accept: {{accept}}
@@ -189,8 +189,8 @@ Authorization:
     "field_filters":{},
     "attribute_filters":{},
     "start":0,
-    "item_group":"Men",
-    "search":"Men Blue"
+    "item_group":"Products",
+    "search":""
 }
 
 ### list all products with Category
@@ -202,7 +202,7 @@ Authorization:
 
 {
     "start":0,
-    "item_group":"Shirt"
+    "item_group":"Products"
 }
 
 
@@ -227,7 +227,7 @@ Authorization:
 
 {
     "start":0,
-    "search":"Men"
+    "search":"1112"
 }
 
 ### test api
@@ -255,7 +255,7 @@ Accept: {{accept}}
 Authorization:
 
 {
-    "item_code":"0020"
+    "item_code":"111"
 }
 
 ###  get product review
@@ -265,7 +265,7 @@ Accept: {{accept}}
 Authorization:{{authorization}}
 
 {
-    "item_code":"7369",
+    "item_code":"0035",
     "start":0,
     "end":10
 }
@@ -276,7 +276,7 @@ Accept: {{accept}}
 Authorization:{{authorization}}
 
 {
-    "item_code":"7369",
+    "item_code":"0035",
     "title":"Great Laptop",
     "rating": 5,
     "comment": "Nice Product"
@@ -320,7 +320,7 @@ Accept: {{accept}}
 Authorization:{{authorization}}
 
 {
-    "item_code":"0002",
+    "item_code":"0035",
     "qty":3,
     "with_items":1
 }
@@ -377,7 +377,7 @@ Authorization:{{authorization}}
 
 {
     "address_type":"billing",
-    "address_name":"Arun-Billing"
+    "address_name":"Ebys Mathew-Parakunnell-Billing"
 }
 
 ### get all country list
@@ -399,7 +399,7 @@ Accept: {{accept}}
 Authorization:{{authorization}}
 
 {   
-    "custom_full_name":"Eby Mathew",
+    "custom_full_name":"Ebys Mathew",
     "address_line1":"Parakunnell",
     "address_line2":"Eby villa",
     "city":"New One",
@@ -441,7 +441,7 @@ Accept: {{accept}}
 Authorization:{{authorization}}
 
 {
-    "name":"Eby 333-Billing"
+    "name":"Ebys Mathew-Parakunnell-Billing"
 }
 
 
@@ -478,7 +478,7 @@ Accept: {{accept}}
 Authorization:{{authorization}}
 
 {
-    "sales_order_id":"SAL-ORD-2024-00005"
+    "sales_order_id":"SAL-ORD-2024-00007"
 }
 
 

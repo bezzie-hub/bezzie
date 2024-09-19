@@ -10,7 +10,7 @@ import frappe
 import base64
 from frappe.utils.password import update_password, check_password
 from frappe.website.utils import is_signup_disabled
-from erpnext.e_commerce.shopping_cart.cart import get_party
+from webshop.webshop.shopping_cart.cart import get_party
 from frappe.utils import validate_email_address, validate_name, validate_phone_number
 
 
